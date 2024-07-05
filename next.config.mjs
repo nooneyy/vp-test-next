@@ -4,6 +4,16 @@ const nextConfig = {
     ppr: true,
     reactCompiler: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "",
+        pathname: "/dxcy1njpq/**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
