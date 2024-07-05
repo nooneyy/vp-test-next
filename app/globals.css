@@ -36,10 +36,6 @@
     }
 }
 
-html {
-    color-scheme: light;
-}
-
 @layer base {
     * {
         @apply border-border;
