@@ -17,7 +17,7 @@ export const products = sqliteTable(
     taxedPrice: integer("taxed_price").generatedAlwaysAs(
       (): SQL => sql`round(${products.price} * 1.21)`,
       { mode: "stored" },
-    ),
+    ).notNull(),
     picturePath: text("picture_path").notNull(),
     slug: text("slug").notNull().unique(),
     descriptionBig: text("description_big").notNull(),
