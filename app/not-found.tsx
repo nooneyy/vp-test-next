@@ -16,9 +16,10 @@ const NotFound = () => {
       <Image
         src={errorImg}
         alt="Error"
-        className="pointer-events-none"
+        className="px-4 lg:px-0 select-none pointer-events-none"
         height={320}
         width={240}
+        priority
       />
       <div className="flex flex-col gap-4 items-center lg:items-start">
         <p className="text-5xl lg:text-7xl font-bold text-center lg:text-start">
