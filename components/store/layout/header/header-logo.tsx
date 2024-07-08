@@ -12,7 +12,7 @@ const HeaderLogo = ({ className }: { className?: string }) => {
         className,
       )}
     >
-      <Image src={logo} alt="Vinařství Plchut" width={72} />
+      <Image src={logo} alt="Vinařství Plchut" width={72} priority />
     </Link>
   );
 };
