@@ -10,7 +10,7 @@ export const HeaderDesktop = ({ buttons }: { buttons: ButtonProps[] }) => {
         {buttons[0].content}
       </Button>
       <div className="ml-auto hidden h-8 items-center gap-6 md:flex">
-        <Button variant={buttons[1].variant} className="font-semibold">
+        <Button variant={buttons[1].variant} className="font-medium">
           {buttons[1].icon}
           {buttons[1].content}
         </Button>
@@ -20,7 +20,7 @@ export const HeaderDesktop = ({ buttons }: { buttons: ButtonProps[] }) => {
             <Button
               key={btn.content}
               variant={btn.variant}
-              className="font-semibold"
+              className="font-medium"
             >
               {btn.icon}
               {btn.content}
