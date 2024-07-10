@@ -12,17 +12,17 @@ export const metadata: Metadata = {
 
 const NotFound = () => {
   return (
-    <main className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-24 h-screen -mt-10">
+    <main className="-mt-10 flex h-screen flex-col items-center justify-center gap-8 lg:flex-row lg:gap-24">
       <Image
         src={errorImg}
         alt="Error"
-        className="px-4 lg:px-0 select-none pointer-events-none"
+        className="pointer-events-none select-none px-4 lg:px-0"
         height={320}
         width={240}
         priority
       />
-      <div className="flex flex-col gap-4 items-center lg:items-start">
-        <p className="text-5xl lg:text-7xl font-bold text-center lg:text-start">
+      <div className="flex flex-col items-center gap-4 lg:items-start">
+        <p className="text-center text-5xl font-bold lg:text-start lg:text-7xl">
           Stránka nenalezena
         </p>
         <Link
@@ -32,7 +32,7 @@ const NotFound = () => {
           )}
           href="/"
         >
-          <CornerDownRight className="size-6 mr-2" />
+          <CornerDownRight className="mr-2 size-6" />
           Vrátit se na domovskou stránku
         </Link>
       </div>

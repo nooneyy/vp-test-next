@@ -14,10 +14,11 @@ export const products = sqliteTable(
     createdAt: text("created_at")
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    taxedPrice: integer("taxed_price").generatedAlwaysAs(
-      (): SQL => sql`round(${products.price} * 1.21)`,
-      { mode: "stored" },
-    ).notNull(),
+    taxedPrice: integer("taxed_price")
+      .generatedAlwaysAs((): SQL => sql`round(${products.price} * 1.21)`, {
+        mode: "stored",
+      })
+      .notNull(),
     picturePath: text("picture_path").notNull(),
     slug: text("slug").notNull().unique(),
     descriptionBig: text("description_big").notNull(),
@@ -29,6 +30,7 @@ export const products = sqliteTable(
     return {
       visibleIdx: index("visible_idx").on(table.visible),
       badgesIdx: index("badges_idx").on(table.badges),
+      slugIdx: index("slug_idx").on(table.slug),
     };
   },
 );

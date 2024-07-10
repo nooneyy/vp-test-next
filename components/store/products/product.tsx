@@ -20,21 +20,21 @@ export const Product = ({
 }) => {
   return (
     <Link href={`/produkty/${productInfo.slug}`}>
-      <article className="flex flex-col items-center group px-6 md:px-0">
+      <article className="group flex flex-col items-center px-6 md:px-0">
         <Image
           src={productInfo.picturePath}
           width={320}
           height={320}
           priority={priority}
           alt={`Fotka pro ${productInfo.name}`}
-          className="rounded-2xl group-hover:scale-105 transition-transform"
+          className="rounded-2xl transition-transform group-hover:scale-105"
         />
-        <div className="flex flex-col px-1 pt-4 pb-8 md:pb-4 items-start justify-center gap-2 w-full group-hover:translate-y-1 transition-transform">
-          <div className="flex items-center gap-4 w-full">
+        <div className="flex w-full flex-col items-start justify-center gap-2 px-1 pb-8 pt-4 transition-transform group-hover:translate-y-1 md:pb-4">
+          <div className="flex w-full items-center gap-4">
             <p className="scroll-m-20 font-semibold tracking-tight group-hover:underline">
               {productInfo.name}
             </p>
-            <div className="flex items-center gap-4 ml-auto mr-2">
+            <div className="ml-auto mr-2 flex items-center gap-4">
               <Badge
                 variant="destructive"
                 className={`${getBadgeClasses(productInfo.badges[0])}`}
@@ -54,19 +54,19 @@ export const Product = ({
 export const ProductSkeleton = () => {
   return (
     <article className="flex flex-col items-center">
-      <Skeleton className="w-full h-full aspect-square rounded-2xl" />
-      <div className="flex flex-col px-1 pt-4 pb-8 md:pb-4 items-start justify-center gap-2 w-full">
-        <div className="flex items-center gap-4 w-full">
-          <div className="flex flex-col gap-4 h-full mr-4">
-            <Skeleton className="w-[135.77px] h-[18px]" />
-            <Skeleton className="w-[120px] h-[18px]" />
+      <Skeleton className="aspect-square h-full w-full rounded-2xl" />
+      <div className="flex w-full flex-col items-start justify-center gap-2 px-1 pb-8 pt-4 md:pb-4">
+        <div className="flex w-full items-center gap-4">
+          <div className="mr-4 flex h-full flex-col gap-4">
+            <Skeleton className="h-[18px] w-[135.77px]" />
+            <Skeleton className="h-[18px] w-[120px]" />
           </div>
-          <div className="flex items-center gap-4 ml-auto mr-2">
-            <Skeleton className="w-[71.23px] h-[22px] rounded-full " />
+          <div className="ml-auto mr-2 flex items-center gap-4">
+            <Skeleton className="h-[22px] w-[71.23px] rounded-full" />
           </div>
         </div>
         <Separator />
-        <Skeleton className="w-[53.53px] h-[28px] rounded-full" />
+        <Skeleton className="h-[28px] w-[53.53px] rounded-full" />
       </div>
     </article>
   );

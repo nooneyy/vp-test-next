@@ -9,12 +9,12 @@ export const HeaderDesktop = ({ buttons }: { buttons: ButtonProps[] }) => {
         {buttons[0].icon}
         {buttons[0].content}
       </Button>
-      <div className="ml-auto hidden h-8 items-center gap-6 md:flex">
+      <div className="ml-auto hidden items-center gap-6 md:flex">
         <Button variant={buttons[1].variant} className="font-medium">
           {buttons[1].icon}
           {buttons[1].content}
         </Button>
-        <Separator orientation="vertical" />
+        <Separator orientation="vertical" className="h-8" />
         <div className="flex items-center gap-4">
           {buttons.slice(2).map((btn) => (
             <Button

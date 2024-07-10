@@ -14,6 +14,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Obchod | Vinařství Plchut",
+  description: "Stránka obchodu Vinařství Plchut",
 };
 
 const Index = () => {
@@ -50,26 +51,26 @@ const ProductSectionsFallback = () => (
 
 const VideoCard = () => {
   return (
-    <section className="py-3 md:px-[4%] lg:px-[7%] xl:px-[8%] 2xl:px-[10%] flex items-center justify-center md:justify-between md:gap-5 lg:gap-12">
+    <section className="flex items-center justify-center py-3 md:justify-between md:gap-5 md:px-[4%] lg:gap-12 lg:px-[7%] xl:px-[8%] 2xl:px-[10%]">
       <Link
         href="/vse"
-        className="flex gap-1 absolute px-12 py-2 rounded-xl bg-white md:static md:p-0 md:flex-col md:bg-none hover:underline hover:bg-white/90 md:hover:bg-none z-10 items-center md:items-start transition-colors"
+        className="absolute z-10 flex items-center gap-1 rounded-xl bg-white px-12 py-2 transition-colors hover:bg-white/90 hover:underline md:static md:flex-col md:items-start md:bg-none md:p-0 md:hover:bg-none"
       >
-        <p className="text-lg md:text-4xl font-bold md:font-extrabold tracking-tight lg:text-5xl text-foreground">
+        <p className="text-lg font-bold tracking-tight text-foreground md:text-4xl md:font-extrabold lg:text-5xl">
           Nakupovat
         </p>
-        <div className="flex md:gap-1 items-center">
-          <p className="text-lg md:text-4xl font-bold md:font-extrabold tracking-tight lg:text-5xl text-foreground">
+        <div className="flex items-center md:gap-1">
+          <p className="text-lg font-bold tracking-tight text-foreground md:text-4xl md:font-extrabold lg:text-5xl">
             vše
           </p>
-          <ChevronRight className="h-8 w-8 lg:h-10 lg:w-10 self-end" />
+          <ChevronRight className="h-8 w-8 self-end lg:h-10 lg:w-10" />
         </div>
       </Link>
       <video
         autoPlay
         muted
         playsInline
-        className="rounded-2xl object-cover mx-6 md:mx-0 md:w-[80%] h-[500px] min-w-0"
+        className="mx-6 h-[500px] min-w-0 rounded-2xl object-cover md:mx-0 md:w-[80%]"
       >
         <source
           src="https://gsphznnnvwsheneigodw.supabase.co/storage/v1/object/public/video/indexvideo.mp4"
