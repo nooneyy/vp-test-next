@@ -8,7 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export type SmallProduct = Pick<
   typeof products.$inferSelect,
-  "slug" | "taxedPrice" | "name" | "picturePath" | "badges"
+  "slug" | "taxedPrice" | "name" | "picturePath" | "firstBadge"
 >;
 
 export const Product = ({
@@ -37,9 +37,9 @@ export const Product = ({
             <div className="ml-auto mr-2 flex items-center gap-4">
               <Badge
                 variant="destructive"
-                className={`${getBadgeClasses(productInfo.badges[0])}`}
+                className={`${getBadgeClasses(productInfo.firstBadge)}`}
               >
-                {getBadgeName(productInfo.badges[0])}
+                {getBadgeName(productInfo.firstBadge)}
               </Badge>
             </div>
           </div>

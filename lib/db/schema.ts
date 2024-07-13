@@ -11,6 +11,12 @@ export const products = sqliteTable(
     price: integer("price", { mode: "number" }).notNull(),
     sales: integer("sales", { mode: "number" }).default(0).notNull(),
     badges: text("badges", { mode: "json" }).notNull().$type<string[]>(),
+    firstBadge: text("first_badge")
+      .generatedAlwaysAs(
+        (): SQL => sql`json_extract(${products.badges}, '$[0]')`,
+        { mode: "stored" },
+      )
+      .notNull(),
     createdAt: text("created_at")
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
@@ -30,7 +36,14 @@ export const products = sqliteTable(
     return {
       visibleIdx: index("visible_idx").on(table.visible),
       badgesIdx: index("badges_idx").on(table.badges),
+      firstBadgeIdx: index("first_badge_idx").on(table.firstBadge),
       slugIdx: index("slug_idx").on(table.slug),
+      visibleBadgesSlugIdx: index("visible_badges_slug_idx").on(
+        table.visible,
+        table.firstBadge,
+        table.slug,
+        table.id,
+      ),
     };
   },
 );

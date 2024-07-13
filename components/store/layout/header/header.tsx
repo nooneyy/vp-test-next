@@ -1,7 +1,13 @@
-import { Search, ShoppingBag, ShoppingBasket, User } from "lucide-react";
+import { Search, ShoppingBag, User } from "lucide-react";
 import HeaderLogo from "@/components/store/layout/header/header-logo";
 import HeaderDesktop from "@/components/store/layout/header/header-desktop";
 import { ButtonProps } from "@/components/ui/button";
+import {
+  CartProvider,
+  CartSheet,
+} from "@/components/store/layout/header/cart/cart";
+import { getCart } from "@/lib/db/queries";
+import { unstable_noStore } from "next/cache";
 
 export type Button = {
   content: string;
@@ -25,20 +31,24 @@ const buttons: Button[] = [
     icon: <User className="mr-2 size-5" />,
     variant: "outline",
   },
-  {
-    content: "Košík",
-    icon: <ShoppingBasket className="mr-2 size-5" />,
-    variant: "default",
-  },
 ];
 
 const Header = () => {
   return (
     <header className="flex items-center gap-12 border-b-2 border-border/40 p-3 md:px-[4%] lg:px-[7%] xl:px-[8%] 2xl:px-[10%]">
       <HeaderLogo className="-mr-[5.5rem] ml-auto md:-mr-0 md:ml-0" />
-      <HeaderDesktop buttons={buttons} />
+      <CartProvider>
+        <HeaderDesktop buttons={buttons} />
+        <CartWithData />
+      </CartProvider>
     </header>
   );
+};
+
+const CartWithData = async () => {
+  unstable_noStore();
+  const cartData = await getCart();
+  return <CartSheet cartData={cartData} />;
 };
 
 export default Header;

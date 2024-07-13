@@ -19,12 +19,12 @@ export const metadata: Metadata = {
 
 const Index = () => {
   return (
-    <main>
+    <>
       <VideoCard />
       <Suspense fallback={<ProductSectionsFallback />}>
         <ProductSections />
       </Suspense>
-    </main>
+    </>
   );
 };
 
@@ -73,7 +73,7 @@ const VideoCard = () => {
         className="mx-6 h-[500px] min-w-0 rounded-2xl object-cover md:mx-0 md:w-[80%]"
       >
         <source
-          src="https://gsphznnnvwsheneigodw.supabase.co/storage/v1/object/public/video/indexvideo.mp4"
+          src="https://res.cloudinary.com/dxcy1njpq/video/upload/f_auto:video,q_auto/v1/video/indexvideo"
           type="video/mp4"
         />
         <track kind="captions" />

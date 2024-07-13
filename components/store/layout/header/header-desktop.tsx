@@ -1,6 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { type Button as ButtonProps } from "@/components/store/layout/header/header";
 import { Separator } from "@/components/ui/separator";
+import { DesktopCartTrigger } from "@/components/store/layout/header/cart/cart-triggers";
+import { getCart } from "@/lib/db/queries";
+import { Suspense } from "react";
+import { unstable_noStore } from "next/cache";
 
 export const HeaderDesktop = ({ buttons }: { buttons: ButtonProps[] }) => {
   return (
@@ -16,20 +20,23 @@ export const HeaderDesktop = ({ buttons }: { buttons: ButtonProps[] }) => {
         </Button>
         <Separator orientation="vertical" className="h-8" />
         <div className="flex items-center gap-4">
-          {buttons.slice(2).map((btn) => (
-            <Button
-              key={btn.content}
-              variant={btn.variant}
-              className="font-medium"
-            >
-              {btn.icon}
-              {btn.content}
-            </Button>
-          ))}
+          <Button variant={buttons[2].variant} className="font-medium">
+            {buttons[2].icon}
+            {buttons[2].content}
+          </Button>
+          <Suspense>
+            <CartButtonWithData />
+          </Suspense>
         </div>
       </div>
     </>
   );
+};
+
+const CartButtonWithData = async () => {
+  unstable_noStore();
+  const cartData = await getCart();
+  return <DesktopCartTrigger cartData={cartData} />;
 };
 
 export default HeaderDesktop;
