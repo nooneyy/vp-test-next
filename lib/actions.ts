@@ -22,7 +22,7 @@ export const productFormAction = async (formData: FormData) => {
     } else {
       await createCart(slug, parsedQuantity);
     }
-    revalidatePath("/");
+    revalidatePath(`/produkty/${slug}`, "layout");
   } else {
     throw new Error("Slug and quantity not found while updating cart!");
   }
@@ -45,7 +45,7 @@ export const cartQuantityAction = async (formData: FormData) => {
         throw new Error("Wrong action supplied!");
       }
       await updateCartContents(cartMap);
-      revalidatePath("/");
+      revalidatePath("/", "layout");
     } else {
       throw new Error("No cart found while updating cart item!");
     }
@@ -64,7 +64,7 @@ export const cartDeleteAction = async (formData: FormData) => {
       const cartMap = new Map(cartContents);
       cartMap.delete(slug);
       await updateCartContents(cartMap);
-      revalidatePath("/");
+      revalidatePath("/", "layout");
     } else {
       throw new Error("No cart found while deleting cart item!");
     }
