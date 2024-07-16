@@ -59,7 +59,7 @@ const InternalLink = ({
   children: React.ReactNode;
 }) => {
   return (
-    <Link href={href} className={linkClasses}>
+    <Link href={href} className={linkClasses} prefetch={false}>
       {children}
     </Link>
   );
