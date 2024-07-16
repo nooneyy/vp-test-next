@@ -5,6 +5,7 @@ import { DesktopCartTrigger } from "@/components/store/layout/header/cart/cart-t
 import { getCart } from "@/lib/db/queries";
 import { Suspense } from "react";
 import { unstable_noStore } from "next/cache";
+import { LoaderCircle, ShoppingBasket } from "lucide-react";
 
 export const HeaderDesktop = ({ buttons }: { buttons: ButtonProps[] }) => {
   return (
@@ -24,7 +25,7 @@ export const HeaderDesktop = ({ buttons }: { buttons: ButtonProps[] }) => {
             {buttons[2].icon}
             {buttons[2].content}
           </Button>
-          <Suspense>
+          <Suspense fallback={<CartButtonFallback />}>
             <CartButtonWithData />
           </Suspense>
         </div>
@@ -37,6 +38,15 @@ const CartButtonWithData = async () => {
   unstable_noStore();
   const cartData = await getCart();
   return <DesktopCartTrigger cartData={cartData} />;
+};
+
+const CartButtonFallback = () => {
+  return (
+    <Button className="font-medium">
+      <ShoppingBasket className="mr-2 size-5" />
+      <LoaderCircle className="mx-[26.445px] size-5 animate-spin" />
+    </Button>
+  );
 };
 
 export default HeaderDesktop;
