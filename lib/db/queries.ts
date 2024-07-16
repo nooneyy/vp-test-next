@@ -6,8 +6,8 @@ import { cookies } from "next/headers";
 import { cache } from "react";
 import { randomUUID } from "crypto";
 
-export const queryNewestProducts = async () =>
-  await db.query.products.findMany({
+export const queryNewestProducts = () =>
+  db.query.products.findMany({
     columns: {
       name: true,
       taxedPrice: true,
@@ -23,7 +23,7 @@ export const queryNewestProducts = async () =>
     limit: 4,
   });
 
-export const queryMostPopularProducts = async () =>
+export const queryMostPopularProducts = () =>
   db.query.products.findMany({
     columns: {
       name: true,
@@ -45,15 +45,14 @@ export const getProductInfo = cache(async (slug: string) => {
   });
 });
 
-export const getRelatedProducts = async (slug: string, badge: string) => {
-  return await db.query.products.findMany({
+export const getRelatedProducts = (slug: string, badge: string) =>
+  db.query.products.findMany({
     where: (products, { eq, and, ne }) =>
       and(ne(products.slug, slug), eq(products.visible, true)),
     orderBy: (products) =>
       sql`CASE WHEN ${products.firstBadge} = ${badge} THEN 0 ELSE 1 END, id DESC`,
     limit: 4,
   });
-};
 
 export type CartProduct = {
   quantity: number;
@@ -70,8 +69,8 @@ export type Cart = {
   contents: CartProduct[];
 };
 
-const getCartItem = async (slug: string) => {
-  return await db.query.products.findFirst({
+const getCartItem = (slug: string) =>
+  db.query.products.findFirst({
     columns: {
       name: true,
       inStock: true,
@@ -82,7 +81,6 @@ const getCartItem = async (slug: string) => {
     },
     where: (products, { eq }) => eq(products.slug, slug),
   });
-};
 
 export const getCart = cache(async () => {
   const cart: Cart = {
@@ -156,6 +154,11 @@ export const createCart = async (slug: string, quantity: number) => {
   });
 
   if (result.rowsAffected > 0) {
-    cookies().set("cart", uuid);
+    cookies().set("cart", uuid, {
+      expires: Date.now() + 1000 * 60 * 60 * 24 * 5,
+      secure: true,
+      httpOnly: true,
+      sameSite: "strict",
+    });
   }
 };
