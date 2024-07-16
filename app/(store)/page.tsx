@@ -29,13 +29,10 @@ const Index = () => {
 };
 
 const ProductSections = async () => {
-  const test = new Promise((res) => setTimeout(res, 2000));
-
   unstable_noStore();
-  const [newestProducts, mostPopularProducts, _] = await Promise.all([
+  const [newestProducts, mostPopularProducts] = await Promise.all([
     queryNewestProducts(),
     queryMostPopularProducts(),
-    test,
   ]);
   return (
     <>
