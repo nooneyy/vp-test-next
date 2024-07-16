@@ -18,7 +18,8 @@ export default function RootLayout({
   return (
     <html lang="cs">
       <body className={inter.className}>
-        <ProgressBarProvider>{children}</ProgressBarProvider>
+        {children}
+        <ProgressBarProvider />
       </body>
     </html>
   );

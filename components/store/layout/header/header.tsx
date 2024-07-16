@@ -8,6 +8,7 @@ import {
 } from "@/components/store/layout/header/cart/cart";
 import { getCart } from "@/lib/db/queries";
 import { unstable_noStore } from "next/cache";
+import { Suspense } from "react";
 
 export type Button = {
   content: string;
@@ -39,7 +40,9 @@ const Header = () => {
       <HeaderLogo className="-mr-[5.5rem] ml-auto md:-mr-0 md:ml-0" />
       <CartProvider>
         <HeaderDesktop buttons={buttons} />
-        <CartWithData />
+        <Suspense fallback={null}>
+          <CartWithData />
+        </Suspense>
       </CartProvider>
     </header>
   );
