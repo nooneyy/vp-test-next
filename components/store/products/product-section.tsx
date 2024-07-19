@@ -26,10 +26,9 @@ export const ProductSection = ({
 export const ProductSectionSkeleton = ({ name }: { name: string }) => {
   return (
     <ProductSectionWrapper name={name}>
-      <ProductSkeleton />
-      <ProductSkeleton />
-      <ProductSkeleton />
-      <ProductSkeleton />
+      {Array.from({ length: 4 }, (_, i) => (
+        <ProductSkeleton key={i} />
+      ))}
     </ProductSectionWrapper>
   );
 };
