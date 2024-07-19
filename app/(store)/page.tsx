@@ -4,10 +4,7 @@ import {
   ProductSection,
   ProductSectionSkeleton,
 } from "@/components/store/products/product-section";
-import {
-  queryMostPopularProducts,
-  queryNewestProducts,
-} from "@/lib/db/queries";
+import { getMostPopularProducts, getNewestProducts } from "@/lib/db/queries";
 import { Suspense } from "react";
 import { unstable_noStore } from "next/cache";
 import type { Metadata } from "next";
@@ -31,8 +28,8 @@ const Index = () => {
 const ProductSections = async () => {
   unstable_noStore();
   const [newestProducts, mostPopularProducts] = await Promise.all([
-    queryNewestProducts(),
-    queryMostPopularProducts(),
+    getNewestProducts(),
+    getMostPopularProducts(),
   ]);
   return (
     <>

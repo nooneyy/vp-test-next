@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 import { cache } from "react";
 import { randomUUID } from "crypto";
 
-export const queryNewestProducts = () =>
+export const getNewestProducts = () =>
   db.query.products.findMany({
     columns: {
       name: true,
@@ -23,7 +23,7 @@ export const queryNewestProducts = () =>
     limit: 4,
   });
 
-export const queryMostPopularProducts = () =>
+export const getMostPopularProducts = () =>
   db.query.products.findMany({
     columns: {
       name: true,
